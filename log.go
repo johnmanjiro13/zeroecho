@@ -36,11 +36,10 @@ func (l *Logger) Prefix() string {
 	return l.prefix
 }
 
-func (l *Logger) SetPrefix(newPrefix string) {
-	withPrefix := zerolog.New(l.out).With().Str("prefix", newPrefix).Timestamp().Logger()
+func (l *Logger) SetPrefix(p string) {
+	withPrefix := zerolog.New(l.out).With().Str("prefix", p).Timestamp().Logger()
 	l.log = withPrefix
-	l.prefix = newPrefix
-	return
+	l.prefix = p
 }
 
 func (l *Logger) Level() log.Lvl {
