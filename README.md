@@ -6,6 +6,8 @@ zeroecho is a [zerolog](https://github.com/rs/zerolog) wrapper for [Echo](https:
 
 # Usage
 ```go
+package main
+
 import (
     "net/http"
     "os"
