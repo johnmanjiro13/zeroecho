@@ -1,4 +1,4 @@
-module github.com/johnmanjiro13
+module github.com/johnmanjiro13/zeroecho
 
 go 1.14
 
