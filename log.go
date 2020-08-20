@@ -17,7 +17,7 @@ type Logger struct {
 
 func New(out io.Writer, prefix string) *Logger {
 	return &Logger{
-		log:    zerolog.New(out).With().Timestamp().Logger(),
+		log:    zerolog.New(out).With().Str("prefix", prefix).Timestamp().Logger(),
 		out:    out,
 		prefix: prefix,
 	}
