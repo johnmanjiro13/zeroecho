@@ -29,7 +29,7 @@ func (l *Logger) Output() io.Writer {
 
 func (l *Logger) SetOutput(newOut io.Writer) {
 	l.out = newOut
-	l.log.Output(newOut)
+	l.log = l.log.Output(newOut)
 }
 
 func (l *Logger) Prefix() string {
@@ -49,7 +49,7 @@ func (l *Logger) Level() log.Lvl {
 func (l *Logger) SetLevel(lvl log.Lvl) {
 	level := levels[lvl]
 	l.level = lvl
-	l.log.Level(level)
+	l.log = l.log.Level(level)
 }
 
 func (l *Logger) SetHeader(h string) {
