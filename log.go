@@ -17,7 +17,7 @@ type Logger struct {
 
 func New(out io.Writer, prefix string) *Logger {
 	return &Logger{
-		log:    zerolog.New(out).With().Logger(),
+		log:    zerolog.New(out).With().Timestamp().Logger(),
 		out:    out,
 		prefix: prefix,
 	}
@@ -37,6 +37,8 @@ func (l *Logger) Prefix() string {
 }
 
 func (l *Logger) SetPrefix(newPrefix string) {
+	withPrefix := zerolog.New(l.out).With().Str("prefix", newPrefix).Timestamp().Logger()
+	l.log = withPrefix
 	l.prefix = newPrefix
 	return
 }
@@ -45,12 +47,14 @@ func (l *Logger) Level() log.Lvl {
 	return l.level
 }
 
-func (l *Logger) SetLevel(v log.Lvl) {
-	level := levels[v]
+func (l *Logger) SetLevel(lvl log.Lvl) {
+	level := levels[lvl]
+	l.level = lvl
 	l.log.Level(level)
 }
 
 func (l *Logger) SetHeader(h string) {
+	// not implemented.
 }
 
 func (l *Logger) Print(i ...interface{}) {
